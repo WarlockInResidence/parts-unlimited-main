@@ -11,9 +11,9 @@ const App = () => {
   const [productQuantity, setProductQuantity] = useState<string>("");
   const [productColor, setProductColor] = useState<string>("");
 
-  const setProductNameFromInput = (event: FormEvent<HTMLInputElement>) => {
-    setProductName(event.currentTarget.value);
-  };
+  // const setProductNameFromInput = (event: FormEvent<HTMLInputElement>) => {
+  //   setProductName(event.currentTarget.value);
+  // };
 
   const setProductModelFromInput = (event: FormEvent<HTMLInputElement>) => {
     setProductModel(event.currentTarget.value);
@@ -58,7 +58,9 @@ const App = () => {
             type="text"
             placeholder={"product name"}
             value={productName}
-            onChange={setProductNameFromInput}
+            onChange={(event) => {
+              setProductName(event.currentTarget.value);
+            }}
           />
           <input
             name="model number"
