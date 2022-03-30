@@ -1,5 +1,6 @@
 package org.asi.partsunlimited.controllers;
 
+import org.asi.partsunlimited.PatchProduct;
 import org.asi.partsunlimited.Product;
 import org.asi.partsunlimited.services.ProductService;
 import org.springframework.http.HttpStatus;
@@ -50,7 +51,7 @@ public class ProductController {
     // Make patch
     // in service -> public void updateProduct(Product product) { productRepository.save(product); }
     @PatchMapping("/products/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    public ResponseEntity updateProduct(@PathVariable Long id, @RequestBody PatchProduct product) {
         Product patchItem = productService.find(id).orElse(null);
 
         if(product.getName() != null) patchItem.setName((product.getName()));
@@ -59,7 +60,7 @@ public class ProductController {
         if(product.getColor() != null) patchItem.setColor((product.getColor()));
         productService.updateProduct(patchItem);
 
-        return new ResponseEntity<Product>(product, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 

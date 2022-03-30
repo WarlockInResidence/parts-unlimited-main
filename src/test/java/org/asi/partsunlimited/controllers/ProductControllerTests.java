@@ -30,7 +30,7 @@ class ProductControllerTests {
 
     @Test
     void shouldSaveProductWhenANewProductIsAdded() throws Exception {
-        when(productService.addProduct("some-product")).thenReturn(new Product(1L, "some-product", 1234 , 0));
+        when(productService.addProduct("some-product")).thenReturn(new Product(1L, "some-product", 1234 , 0, "red"));
 
         this.mockMvc.perform(post("/products").contentType(MediaType.TEXT_PLAIN).content("some-product"))
                 .andExpect(status().isCreated())
@@ -42,8 +42,8 @@ class ProductControllerTests {
     @Test
     void shouldRetrieveAllProductsWhenGettingProducts() throws Exception {
         when(productService.getProducts()).thenReturn(List.of(
-                new Product(1L, "first-product", 5678, 0),
-                new Product(2L, "second-product", 2357, 1)));
+                new Product(1L, "first-product", 5678, 0, "red"),
+                new Product(2L, "second-product", 2357, 1, "red")));
 
         this.mockMvc.perform(get("/products"))
                 .andExpect(status().isOk())
