@@ -55,9 +55,7 @@ public class ProductController {
         Product patchItem = productService.find(id).orElse(null);
 
         if(product.getName() != null) patchItem.setName((product.getName()));
-        if(product.getModel() != null) patchItem.setModel((product.getModel()));
         if(product.getQuantity() != null) patchItem.setQuantity((product.getQuantity()));
-        if(product.getColor() != null) patchItem.setColor((product.getColor()));
         productService.updateProduct(patchItem);
 
         return new ResponseEntity(HttpStatus.OK);

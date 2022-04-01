@@ -7,40 +7,14 @@ import MyDataGrid from "./components/MyDataGrid";
 const App = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [productName, setProductName] = useState<string>("");
-  const [productModel, setProductModel] = useState<string>("");
   const [productQuantity, setProductQuantity] = useState<string>("");
-  const [productColor, setProductColor] = useState<string>("");
-
-  // const setProductNameFromInput = (event: FormEvent<HTMLInputElement>) => {
-  //   setProductName(event.currentTarget.value);
-  // };
-
-  const setProductModelFromInput = (event: FormEvent<HTMLInputElement>) => {
-    setProductModel(event.currentTarget.value);
-  };
-
-  const setProductQuantityFromInput = (event: FormEvent<HTMLInputElement>) => {
-    setProductQuantity(event.currentTarget.value);
-  };
-
-  const setProductColorFromInput = (event: FormEvent<HTMLInputElement>) => {
-    setProductColor(event.currentTarget.value);
-  };
 
   const submitForm = (event: FormEvent) => {
     event.preventDefault();
-    createProduct(
-      productName,
-      productModel,
-      productQuantity,
-      productColor
-    ).then(() => {
+    createProduct(productName, productQuantity).then(() => {
       getProducts().then(setProducts);
     });
-    setProductName(""),
-      setProductQuantity(""),
-      setProductModel(""),
-      setProductColor("");
+    setProductName(""), setProductQuantity("");
   };
 
   useEffect(() => {
@@ -63,28 +37,20 @@ const App = () => {
             }}
           />
           <input
-            name="model number"
-            type="number"
-            placeholder={"model number"}
-            value={productModel}
-            onChange={setProductModelFromInput}
-          />
-          <input
             name="quantity"
             type="number"
             placeholder={"quantity"}
             value={productQuantity}
-            onChange={setProductQuantityFromInput}
-          />
-          <input
-            name="color"
-            type="text"
-            placeholder={"color"}
-            value={productColor}
-            onChange={setProductColorFromInput}
+            onChange={(event) => {
+              setProductQuantity(event.currentTarget.value);
+            }}
           />
         </label>
-        <button type="submit" onClick={submitForm}>
+        <button
+          type="submit"
+          disabled={!productName || productName.startsWith(" ")}
+          onClick={submitForm}
+        >
           Submit
         </button>
       </form>

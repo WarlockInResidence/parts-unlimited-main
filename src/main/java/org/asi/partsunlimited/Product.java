@@ -21,17 +21,12 @@ public class Product {
 
     private String name;
 
-    private int model;
-
     private int quantity;
 
-    private String color;
 
-    public Product(String name, int model, int quantity, String color) {
+    public Product(String name, int quantity) {
         this.name = name;
-        this.model = model;
         this.quantity = quantity;
-        this.color = color;
 
     }
 

@@ -18,17 +18,12 @@ public class PatchProduct {
 
     private String name;
 
-    private Integer model;
-
     private Integer quantity;
 
-    private String color;
 
-    public PatchProduct(String name, Integer model, Integer quantity, String color) {
+    public PatchProduct(String name, Integer quantity) {
         this.name = name;
-        this.model = model;
         this.quantity = quantity;
-        this.color = color;
 
     }
 

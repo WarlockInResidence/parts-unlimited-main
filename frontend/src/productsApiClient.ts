@@ -27,7 +27,6 @@ export async function getProducts(): Promise<Product[]> {
   return (await axios.get<Product[]>("/products")).data;
 }
 
-export async function updateQuantity(id: number, product: Product) {
-  console.log(product, id, "why u hate joseph????");
+export async function updateProduct(id: number, product: Product) {
   await axios.patch(`/products/${id}`, product);
 }
