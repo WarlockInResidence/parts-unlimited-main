@@ -15,9 +15,20 @@ import java.util.Optional;
 @RestController
 public class ProductController {
     private final ProductService productService;
+    private Product[] productArray;
 
     ProductController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @PostMapping("/sendorder")
+    public void sendOrder(@RequestBody Product[] productOrder){
+        this.productArray = productOrder;
+    }
+
+    @GetMapping("/sendorder")
+    public Product[] getOrder(){
+        return this.productArray;
     }
 
     @GetMapping("/products")
@@ -61,5 +72,8 @@ public class ProductController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-
+    @DeleteMapping("/sendorder")
+    public void deleteAll() {
+        this.productArray = null;
+        }
 }
